@@ -41,10 +41,10 @@ def CheckJokers(group)
             end
           elsif (group[group.index('1j')-1].split("")[0] == 'A')
             if($ranks.index(group[group.index('1j')+1].split("")[0]) == 1 or $ranks.index(group[group.index('1j')+1].split("")[0]) == 10)
-              group.delete('1j')
               if(group.size > 2)
                 if(CheckSequence(group[0..group.index('1j')-1]))
                   CheckSequence(group[group.index('1j')+1..group.size-1])
+                  group.delete('1j')
                 else
                   return false
                 end
@@ -91,10 +91,10 @@ def CheckJokers(group)
       else #joker is at the middle
         if(group[group.index('2j')+1].split("")[0] == 'A')
           if($ranks.index(group[group.index('2j')-1].split("")[0]) == 1 or $ranks.index(group[group.index('2j')-1].split("")[0]) == 10)
-            group.delete('2j')
             if(group.size > 2)
               if(CheckSequence(group[0..group.index('2j')-1]))
                 CheckSequence(group[group.index('2j')+1..group.size-1])
+                group.delete('2j')
               else
                 return false
               end
