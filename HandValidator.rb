@@ -12,9 +12,7 @@ $group_suits=Set.new
 $group_ranks=Array.new
 
 def CheckJokers(group)
-  if(group.include?'1j' and group.include?'2j')
-    return false
-  elsif(group.include?'1j')
+  if(group.include?'1j')
       if($group_suits.size == 1)
         if(group.index('1j') == 0 or group.index('1j') == group.size-1) #the joker is at first or last index
           if(group[group.index('1j')+1].include?'A' or group[group.index('1j')-1].include?'A')
@@ -184,12 +182,11 @@ def CheckSequence(group)
     if i == $group_ranks.length-1
       break
     end
-    if(($ranks.index($group_ranks[i]).to_i - $ranks.index($group_ranks[i+1]).to_i).abs == 1)
-      return true
-    else
+    if(($ranks.index($group_ranks[i]).to_i - $ranks.index($group_ranks[i+1]).to_i).abs != 1)
       return false
     end
   end
+  return true
 end
 end
 end
@@ -214,19 +211,23 @@ def CheckSameRank(group)
 end
 
 def CheckLength(group)
-  if(group.length>=3 and group.length<=13)
-    return true
-  else
+  if (group.size <= 2 or group.size > 5)
     return false
   end
+  return true
 end
 
 def validgroup(group)
   if(CheckLength(group))
     group.each do |card|
-      if (!card.include?'j')
-      $group_ranks << card.split('')[0]
-      $group_suits << card.split('')[1]
+      if (!card.include?'1j' and !card.include?'2j')
+        if(card.length == 2)
+          $group_ranks << card.split('')[0]
+          $group_suits << card.split('')[1]
+        else
+          $group_ranks << card.split('')[0] + card.split('')[1]
+          $group_suits << card.split('')[2]
+        end
       end
     end
     if($group_suits.size==1)
