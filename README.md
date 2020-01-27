@@ -10,8 +10,9 @@ however, 2, joker, 4: we can not know if the joker replaces the right sequence.
 the solution is to make sure that the card before the joker and the card after are 2 indecies apart in the ranks array
 (this was solved in the CheckSequence function)
 
-***you can run "TestCases.rb" file to see each test case with its result
 
-***you can run "UserInput.rb" file to input different sets of cards
+***run "TestCases.rb" for test cases
+
+***run "UserInput.rb" to input different sets of cards
 
 ***"HandValidator.rb" contains all of the functions that were used to solve the task
