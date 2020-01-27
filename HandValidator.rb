@@ -1,3 +1,11 @@
+require 'Set'
+
+$suits = Array.new(['h', 's', 'c', 'd'])
+$ranks = Array.new(['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'])
+
+$group_suits=Set.new
+$group_ranks=Array.new
+
 def SplitGroup(group)
   $group_suits.clear()
   $group_ranks.clear()
@@ -214,6 +222,20 @@ def CheckSameRank(group)
     if(group_ranks_set.size==1)
       return true
     end
+  end
+  return false
+end
+
+# main function
+def validgroup(group)
+  if(!GeneralValidation(group))
+    return false
+  end
+  if(CheckSequence(group))
+    return true
+  end
+  if(CheckSameRank(group))
+    return true
   end
   return false
 end
